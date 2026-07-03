@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 const INTERACTIVE_SELECTOR =
   'a, button, [role="button"], input, textarea, select, .skill-pill, .project-tags span, .meta-badge, .lang-btn';
 const MEDIA_SELECTOR = ".project-visual-wrap, .product-window, img";
+const INVERTED_SELECTOR =
+  ".experience-section, .contact-section, .site-footer, .stat-statement, .philosophy-strip, .mobile-contact, .center-logo, .nav-cta, .lang-btn.is-active, .button-primary, .button-secondary, [data-inverted='true']";
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -46,14 +48,18 @@ export function CustomCursor() {
       }
     };
 
-    const onMove = (event: PointerEvent) => {
-      targetX = event.clientX;
-      targetY = event.clientY;
-      setVisible(true);
-
-      const target = event.target as HTMLElement | null;
+    const updateCursorState = (target: HTMLElement | null) => {
       const overMedia = !!target?.closest(MEDIA_SELECTOR);
       const overInteractive = !!target?.closest(INTERACTIVE_SELECTOR);
+      let overInverted = false;
+      try {
+        overInverted = !!target?.closest(INVERTED_SELECTOR);
+      } catch {
+        overInverted = false;
+      }
+
+      dot.classList.toggle("is-inverted", overInverted);
+      ring.classList.toggle("is-inverted", overInverted);
 
       // The project visuals render their own "View case" chip — step aside.
       const overProjectChip = !!target?.closest(".project-visual-wrap");
@@ -73,6 +79,19 @@ export function CustomCursor() {
         targetDotScale = 1;
         ring.classList.remove("is-active");
       }
+    };
+
+    const onMove = (event: PointerEvent) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      setVisible(true);
+      updateCursorState(event.target as HTMLElement | null);
+    };
+
+    const onScroll = () => {
+      if (targetX < 0 || targetY < 0 || !visible) return;
+      const target = document.elementFromPoint(targetX, targetY) as HTMLElement | null;
+      updateCursorState(target);
     };
 
     const onDown = (event: PointerEvent) => {
@@ -112,6 +131,7 @@ export function CustomCursor() {
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
     window.addEventListener("pointerup", onUp, { passive: true });
     document.documentElement.addEventListener("pointerleave", onLeave);
@@ -121,6 +141,7 @@ export function CustomCursor() {
     return () => {
       document.documentElement.classList.remove("has-custom-cursor");
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
       document.documentElement.removeEventListener("pointerleave", onLeave);

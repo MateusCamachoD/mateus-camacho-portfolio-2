@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatePresence, m, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, m, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 import { Building2, Calendar, Check, ExternalLink, MapPin, Minus, Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { SectionHeading } from "@/components/section-heading";
 import { experience } from "@/data/portfolio";
 import { useLanguage } from "@/lib/language-context";
@@ -20,6 +20,7 @@ const experienceKeyMap: Record<string, string> = {
 
 export function ExperienceTimeline() {
   const [openIndex, setOpenIndex] = useState(0);
+  const [reachedIndices, setReachedIndices] = useState<number[]>([0]);
   const { t } = useLanguage();
   const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -32,6 +33,57 @@ export function ExperienceTimeline() {
     damping: 26,
     restDelta: 0.001,
   });
+
+  const updateReachedMarkers = useCallback((scale: number) => {
+    if (!timelineRef.current) return;
+    const trackEl = timelineRef.current.querySelector(".timeline-track") as HTMLElement;
+    if (!trackEl) return;
+
+    const trackHeight = trackEl.clientHeight;
+    const lineTipY = 44 + scale * trackHeight;
+
+    const items = timelineRef.current.querySelectorAll(".timeline-item");
+    const newReached: number[] = [];
+
+    items.forEach((item, idx) => {
+      const el = item as HTMLElement;
+      const triggerY = el.offsetTop + 25;
+      if (idx === 0 || lineTipY >= triggerY) {
+        newReached.push(idx);
+      }
+    });
+
+    setReachedIndices((prev) => {
+      if (prev.length !== newReached.length || prev.some((val, i) => val !== newReached[i])) {
+        return newReached;
+      }
+      return prev;
+    });
+  }, []);
+
+  useMotionValueEvent(lineScale, "change", (latest) => {
+    updateReachedMarkers(latest);
+  });
+
+  useEffect(() => {
+    const handleScrollOrResize = () => {
+      updateReachedMarkers(lineScale.get());
+    };
+    window.addEventListener("resize", handleScrollOrResize);
+    window.addEventListener("scroll", handleScrollOrResize, { passive: true });
+
+    const timer1 = setTimeout(handleScrollOrResize, 50);
+    const timer2 = setTimeout(handleScrollOrResize, 200);
+    const timer3 = setTimeout(handleScrollOrResize, 400);
+
+    return () => {
+      window.removeEventListener("resize", handleScrollOrResize);
+      window.removeEventListener("scroll", handleScrollOrResize);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, [updateReachedMarkers, lineScale, openIndex]);
 
   return (
     <section className="section experience-section" id="experience">
@@ -61,7 +113,7 @@ export function ExperienceTimeline() {
             return (
               <m.article
                 key={`${item.company}-${item.role}`}
-                className={`timeline-item ${isOpen ? "is-open" : ""}`}
+                className={`timeline-item ${isOpen ? "is-open" : ""} ${reachedIndices.includes(index) ? "is-reached" : ""}`}
                 initial={{
                   opacity: 0,
                   y: 45,
@@ -105,12 +157,12 @@ export function ExperienceTimeline() {
                     <div className="timeline-meta-badges">
                       <span className="meta-badge date-badge" title="Período trabalhado">
                         <Calendar className="size-3.5" />
-                        <span>{(translated as any)?.period ?? item.period}</span>
+                        <span>{(translated as { period?: string })?.period ?? item.period}</span>
                       </span>
                       {item.location && (
                         <span className="meta-badge location-badge">
                           <MapPin className="size-3.5" />
-                          <span>{(translated as any)?.location ?? item.location}</span>
+                          <span>{(translated as { location?: string })?.location ?? item.location}</span>
                         </span>
                       )}
                     </div>

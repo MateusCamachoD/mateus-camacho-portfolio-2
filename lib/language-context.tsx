@@ -29,7 +29,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Language | null;
     if (stored === "en" || stored === "pt") {
-      setLanguageState(stored);
+      requestAnimationFrame(() => setLanguageState(stored));
     }
     // Default is always "en" — no browser language auto-detection.
   }, []);

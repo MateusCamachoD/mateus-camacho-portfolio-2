@@ -48,12 +48,16 @@ export function CustomCursor() {
       }
     };
 
-    const updateCursorState = (target: HTMLElement | null) => {
-      const overMedia = !!target?.closest(MEDIA_SELECTOR);
-      const overInteractive = !!target?.closest(INTERACTIVE_SELECTOR);
+    const updateCursorState = (target: Node | null) => {
+      if (!target) return;
+      const el = (target instanceof Element ? target : target.parentElement) as Element | null;
+      if (!el || typeof el.closest !== "function") return;
+
+      const overMedia = !!el.closest(MEDIA_SELECTOR);
+      const overInteractive = !!el.closest(INTERACTIVE_SELECTOR);
       let overInverted = false;
       try {
-        overInverted = !!target?.closest(INVERTED_SELECTOR);
+        overInverted = !!el.closest(INVERTED_SELECTOR);
       } catch {
         overInverted = false;
       }
@@ -62,7 +66,7 @@ export function CustomCursor() {
       ring.classList.toggle("is-inverted", overInverted);
 
       // The project visuals render their own "View case" chip — step aside.
-      const overProjectChip = !!target?.closest(".project-visual-wrap");
+      const overProjectChip = !!el.closest(".project-visual-wrap");
       dot.style.opacity = overProjectChip ? "0" : "1";
       ring.style.opacity = overProjectChip ? "0" : "1";
 
@@ -85,12 +89,12 @@ export function CustomCursor() {
       targetX = event.clientX;
       targetY = event.clientY;
       setVisible(true);
-      updateCursorState(event.target as HTMLElement | null);
+      updateCursorState(event.target as Node | null);
     };
 
     const onScroll = () => {
       if (targetX < 0 || targetY < 0 || !visible) return;
-      const target = document.elementFromPoint(targetX, targetY) as HTMLElement | null;
+      const target = document.elementFromPoint(targetX, targetY);
       updateCursorState(target);
     };
 
@@ -114,11 +118,11 @@ export function CustomCursor() {
     const onEnter = () => setVisible(true);
 
     const tick = () => {
-      // Dot tracks tightly, ring trails with inertia.
-      dotX += (targetX - dotX) * 0.4;
-      dotY += (targetY - dotY) * 0.4;
-      ringX += (targetX - ringX) * 0.16;
-      ringY += (targetY - ringY) * 0.16;
+      // Dot tracks instantly, ring trails smoothly with fast inertia.
+      dotX += (targetX - dotX) * 0.85;
+      dotY += (targetY - dotY) * 0.85;
+      ringX += (targetX - ringX) * 0.28;
+      ringY += (targetY - ringY) * 0.28;
 
       const pressFactor = pressed ? 0.85 : 1;
       ringScale += (targetRingScale * pressFactor - ringScale) * 0.18;

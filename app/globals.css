@@ -3640,24 +3640,45 @@ html.has-custom-cursor select {
 
 .cursor-dot.is-inverted {
   background: var(--background) !important;
+  transform: scale(1.2);
+}
+
+.dark .cursor-dot.is-inverted {
+  background: #000000 !important;
 }
 
 .cursor-ring {
   width: 34px;
   height: 34px;
-  border: 1px solid color-mix(in srgb, var(--foreground) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--foreground) 85%, transparent);
   background: transparent;
   transition: opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.cursor-ring.is-inverted:not(.is-active) {
-  border-color: color-mix(in srgb, var(--background) 50%, transparent) !important;
+.cursor-ring.is-inverted {
+  border: 1px solid var(--background) !important;
+  background: color-mix(in srgb, var(--background) 10%, transparent) !important;
+}
+
+.dark .cursor-ring.is-inverted {
+  border: 1px solid #000000 !important;
+  background: rgba(0, 0, 0, 0.12) !important;
 }
 
 .cursor-ring.is-active {
   border: 1px solid var(--accent);
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
   box-shadow: none;
+}
+
+.cursor-ring.is-inverted.is-active {
+  border: 1px solid var(--background) !important;
+  background: color-mix(in srgb, var(--background) 22%, transparent) !important;
+}
+
+.dark .cursor-ring.is-inverted.is-active {
+  border: 1px solid #000000 !important;
+  background: rgba(0, 0, 0, 0.22) !important;
 }
 
 .cursor-ripple-layer {

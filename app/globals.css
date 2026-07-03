@@ -1175,17 +1175,35 @@ main {
   justify-content: center;
   background: var(--foreground);
   color: var(--background);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .stat-statement strong {
   margin: 3px 0;
   font-size: 1.6rem;
   letter-spacing: -0.045em;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
 }
 
 .stat-statement>span {
   color: var(--background);
   opacity: 0.65;
+  transition: color 0.4s ease, opacity 0.4s ease;
+}
+
+.stat.stat-statement:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--foreground);
+}
+
+.stat.stat-statement:hover>span {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.stat.stat-statement:hover strong {
+  color: var(--foreground);
+  text-shadow: 0 0 26px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 /* About */
@@ -3610,12 +3628,11 @@ html.has-custom-cursor select {
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  will-change: transform;
 }
 
 .cursor-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: var(--foreground);
   transition: opacity 0.25s ease;
 }
@@ -3623,14 +3640,15 @@ html.has-custom-cursor select {
 .cursor-ring {
   width: 34px;
   height: 34px;
-  border: 1.5px solid color-mix(in srgb, var(--foreground) 65%, transparent);
+  border: 1px solid color-mix(in srgb, var(--foreground) 50%, transparent);
   background: transparent;
-  transition: opacity 0.25s ease, border-color 0.3s ease, background-color 0.3s ease;
+  transition: opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .cursor-ring.is-active {
-  border-color: var(--accent);
+  border: 1px solid var(--accent);
   background: color-mix(in srgb, var(--accent) 15%, transparent);
+  box-shadow: none;
 }
 
 .cursor-ripple-layer {

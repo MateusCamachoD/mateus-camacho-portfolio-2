@@ -61,11 +61,11 @@ export function CustomCursor() {
       ring.style.opacity = overProjectChip ? "0" : "1";
 
       if (overInteractive) {
-        targetRingScale = 1.7;
+        targetRingScale = 1.15;
         targetDotScale = 0.45;
         ring.classList.add("is-active");
       } else if (overMedia) {
-        targetRingScale = 1.35;
+        targetRingScale = 1.1;
         targetDotScale = 0.7;
         ring.classList.remove("is-active");
       } else {

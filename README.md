@@ -24,6 +24,14 @@ The architecture and design of this portfolio directly reflect my hands-on exper
 
 ---
 
+## 🎓 Academic Background & Continuous Education
+
+* 🏛️ **Bachelor of Computer Software Engineering — Universidade Tecnológica Federal do Paraná (UTFPR)**: 5-year formal engineering degree (*Aug 2020 – Aug 2025*). Comprehensive theoretical and practical foundation in software architecture, distributed systems, data structures, algorithms, object-oriented design, and enterprise application lifecycle management.
+* 🌐 **International English Proficiency (Cambridge Assessment English — B2 First / FCE)**: Advanced command of global English achieved through 5 years of continuous, immersive study, ensuring seamless technical communication in international environments.
+* 📜 **20+ Verified Executive Certifications**: Over 3,000 hours of specialized, hands-on masterclasses covering Clean Code, Java/Spring Boot microservices, React/Next.js Fullstack architecture, DevOps, AI integration, and Conversion Rate Optimization (CRO).
+
+---
+
 ## 🛠️ Tech Stack & Architecture
 
 This project was developed using the most modern, resilient technologies in the contemporary web ecosystem:
@@ -39,7 +47,7 @@ This project was developed using the most modern, resilient technologies in the 
 ## ⚙️ Engineering & Implementation Highlights
 
 * 🌐 **Native Internationalization (i18n) System**: Reactive simultaneous translation engine (**English / Portuguese**) managed via React Context API (`language-context.tsx`), allowing international recruiters and business partners to toggle the application's language instantly with zero page reloads.
-* 📊 **Executive Continuous Education Grid (20 Certifications)**: A responsive 4-column layout (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`) engineered for rapid scanning by technical recruiters. Showcases over 3,000 hours of specialized training in Java/Spring architecture, Fullstack React/Node, DevOps, AI, CRO, and an **international English proficiency certification (Cambridge Assessment English — B2 First / FCE)** achieved through 5 years of continuous, immersive study.
+* 📊 **Executive Continuous Education Grid (21 Credentials)**: A responsive 4-column layout (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`) engineered for rapid scanning by technical recruiters. Showcases formal academic engineering (UTFPR Bachelor's Degree), over 3,000 hours of specialized training in Java/Spring architecture, Fullstack React/Node, DevOps, AI, CRO, and an **international English proficiency certification (Cambridge Assessment English — B2 First / FCE)** achieved through 5 years of continuous, immersive study.
 * 🚀 **Top-Tier Performance & SEO**: Automated image optimization via `next/image`, strict semantic HTML5 structure, dynamic metadata generation, and top scores across **Core Web Vitals**.
 * 🧹 **Clean Code & Maintainability**: Strict separation of concerns — all portfolio content and localization strings are centralized in `data/portfolio.ts` and `lib/i18n.ts`, keeping UI components (`components/`) strictly focused on presentation and interactive behavior.
 

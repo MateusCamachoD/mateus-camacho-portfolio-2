@@ -22,7 +22,7 @@ export const translations = {
       titleWords: ["Ideas.", "Systems.", "Products."],
       titleSrOnly: "I turn ideas into systems and products.",
       intro:
-        "I'm <strong>Mateus Camacho</strong>, a software engineer, product builder, and founder. I combine engineering, AI, design, and business strategy to take digital products from first principles to production.",
+        "I'm <strong>Mateus D. Camacho</strong>, a software engineer, product builder, and founder. I combine engineering, AI, design, and business strategy to take digital products from first principles to production.",
       viewResume: "View resume",
       scrollToExplore: "Scroll to explore",
       basedIn: "Based in São Paulo · Working worldwide",
@@ -95,15 +95,25 @@ export const translations = {
       title: "Executive Certifications & Specialized Learning",
       description:
         "A rigorous technical and strategic curriculum spanning architecture principles, conversion-driven design, and advanced software engineering.",
-      status: "20 Verified Credentials",
+      status: "21 Verified Credentials",
       filters: {
-        all: "All (20)",
+        all: "All (21)",
         tech: "Engineering & Code",
         design: "Design & UI",
         marketing: "Growth & LP",
         language: "Languages",
       },
       list: [
+        {
+          id: "utfpr-degree",
+          title: "Bachelor of Computer Software Engineering",
+          issuer: "Universidade Tecnológica Federal do Paraná (UTFPR)",
+          date: "Aug 2020 – Aug 2025",
+          details:
+            "5-year formal engineering degree covering software architecture, distributed systems, data structures, algorithms, and clean design.",
+          skills: "Software Engineering · Distributed Systems · Architecture",
+          category: "tech",
+        },
         {
           id: "clean-code",
           title: "Clean Code",
@@ -593,15 +603,25 @@ export const translations = {
       title: "Certificações Executivas & Aprendizado Especializado",
       description:
         "Um currículo rigoroso técnico e estratégico abrangendo princípios de arquitetura, design voltado a conversão e engenharia de software avançada.",
-      status: "20 Credenciais Verificadas",
+      status: "21 Credenciais Verificadas",
       filters: {
-        all: "Todas (20)",
+        all: "Todas (21)",
         tech: "Engenharia & Código",
         design: "Design & UI",
         marketing: "Growth & LP",
         language: "Idiomas",
       },
       list: [
+        {
+          id: "utfpr-degree",
+          title: "Bacharelado em Engenharia de Software",
+          issuer: "Universidade Tecnológica Federal do Paraná (UTFPR)",
+          date: "ago de 2020 – ago de 2025",
+          details:
+            "Formação acadêmica superior de 5 anos em Engenharia de Software, abordando algoritmos, arquitetura de sistemas e sistemas distribuídos.",
+          skills: "Engenharia de Software · Sistemas Distribuídos · Arquitetura",
+          category: "tech",
+        },
         {
           id: "clean-code",
           title: "Clean Code",

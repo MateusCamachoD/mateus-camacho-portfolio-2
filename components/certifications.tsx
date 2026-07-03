@@ -27,7 +27,8 @@ interface CertificationItem {
 }
 
 export function Certifications() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isPt = language === "pt";
   const [activeFilter, setActiveFilter] = useState<Category>("all");
 
   const certificationsList =
@@ -39,6 +40,9 @@ export function Certifications() {
       : certificationsList.filter((item) => item.category === activeFilter);
 
   const getIssuerStyle = (issuer: string) => {
+    if (issuer.includes("Universidade") || issuer.includes("UTFPR")) {
+      return "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30";
+    }
     if (issuer.includes("Rocketseat")) {
       return "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30";
     }
@@ -182,18 +186,26 @@ export function Certifications() {
                 <div className="mt-5 flex items-center justify-between border-t border-border/40 pt-3 text-[11px] font-medium text-muted-foreground">
                   <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold truncate">
                     <ShieldCheck className="size-3.5 shrink-0" />
-                    {item.category === "language"
-                      ? item.skills?.includes("Nota B2")
-                        ? "5 Anos · Contínuo (B2)"
-                        : "5 Years · Continuous (B2)"
-                      : item.skills?.includes("Competências")
-                        ? "Formação Prática"
-                        : "Verified Mastery"}
+                    {item.id === "utfpr-degree"
+                      ? isPt
+                        ? "5 Anos · Bacharelado"
+                        : "5 Years · Bachelor's Degree"
+                      : item.category === "language"
+                        ? isPt
+                          ? "5 Anos · Contínuo (B2)"
+                          : "5 Years · Continuous (B2)"
+                        : isPt
+                          ? "Formação Prática"
+                          : "Verified Mastery"}
                   </span>
                   <span className="font-mono text-[10px] opacity-70 shrink-0">
-                    {item.skills?.includes("Competências") || item.skills?.includes("Nota B2")
-                      ? "Concluído"
-                      : "Completed"}
+                    {item.id === "utfpr-degree"
+                      ? isPt
+                        ? "Formado"
+                        : "Graduated"
+                      : isPt
+                        ? "Concluído"
+                        : "Completed"}
                   </span>
                 </div>
               </m.div>

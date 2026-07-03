@@ -415,6 +415,9 @@ main {
 }
 
 .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 2px;
   padding: 9px 18px;
   border-radius: 9999px;

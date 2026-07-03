@@ -95,9 +95,9 @@ export const translations = {
       title: "Executive Certifications & Specialized Learning",
       description:
         "A rigorous technical and strategic curriculum spanning architecture principles, conversion-driven design, and advanced software engineering.",
-      status: "21 Verified Credentials",
+      status: "29 Verified Credentials",
       filters: {
-        all: "All (21)",
+        all: "All (29)",
         tech: "Engineering & Code",
         design: "Design & UI",
         marketing: "Growth & LP",
@@ -313,6 +313,86 @@ export const translations = {
             "International English language proficiency (B2 First) achieved through 5 years of continuous, immersive study.",
           skills: "B2 Grade · 5 Years Continuous · Global Proficiency",
           category: "language",
+        },
+        {
+          id: "rs-html-css-2019",
+          title: "HTML & CSS Intensive — Web Foundations",
+          issuer: "Rocketseat",
+          date: "2019",
+          details:
+            "Daily intensive study of semantic HTML5 and advanced CSS3, including Flexbox, Grid, animations, and responsive design from scratch.",
+          skills: "HTML5 · CSS3 · Flexbox · Grid · Responsive Design",
+          category: "tech",
+        },
+        {
+          id: "rs-js-2019",
+          title: "JavaScript Fundamentals — Intensive Track",
+          issuer: "Rocketseat",
+          date: "2019",
+          details:
+            "Deep dive into JavaScript ES6+: closures, prototypes, async/await, fetch API, and DOM manipulation with daily hands-on projects.",
+          skills: "JavaScript ES6+ · DOM · Async/Await · Fetch API",
+          category: "tech",
+        },
+        {
+          id: "rs-node-2020",
+          title: "Node.js — Backend Development Intensive",
+          issuer: "Rocketseat",
+          date: "2020",
+          details:
+            "Building complete REST APIs with Node.js, Express, JWT authentication, and PostgreSQL/MongoDB databases in daily study sessions.",
+          skills: "Node.js · Express · REST APIs · JWT · PostgreSQL",
+          category: "tech",
+        },
+        {
+          id: "rs-react-2020",
+          title: "React.js — Frontend Development Intensive",
+          issuer: "Rocketseat",
+          date: "2020",
+          details:
+            "Mastering React hooks, component architecture, Context API, and consuming REST APIs. Daily coding challenges and real projects.",
+          skills: "React · Hooks · Context API · Component Architecture",
+          category: "tech",
+        },
+        {
+          id: "rs-react-native-2021",
+          title: "React Native — Mobile Development Intensive",
+          issuer: "Rocketseat",
+          date: "2021",
+          details:
+            "Cross-platform mobile development for iOS and Android using React Native and Expo, with daily practice on navigation, device APIs, and animations.",
+          skills: "React Native · Expo · Mobile UI · Navigation",
+          category: "tech",
+        },
+        {
+          id: "rs-typescript-2021",
+          title: "TypeScript — Strong Typing Intensive",
+          issuer: "Rocketseat",
+          date: "2021",
+          details:
+            "Applying TypeScript across full-stack projects: interfaces, generics, strict types, and advanced patterns applied to Node.js and React codebases.",
+          skills: "TypeScript · Generics · Interfaces · Type Safety",
+          category: "tech",
+        },
+        {
+          id: "rs-api-rest-2021",
+          title: "API Design & REST Architecture Intensive",
+          issuer: "Rocketseat",
+          date: "2021",
+          details:
+            "Deep dive into REST best practices, API versioning, error handling patterns, documentation with Swagger, and integration testing.",
+          skills: "REST Design · API Versioning · Swagger · Testing",
+          category: "tech",
+        },
+        {
+          id: "rs-fullstack-2022",
+          title: "Full Stack — End-to-End Project Intensive",
+          issuer: "Rocketseat",
+          date: "2022",
+          details:
+            "Final intensive year bringing together front-end, back-end, databases, and deployment into complete production-ready SaaS and web applications.",
+          skills: "Full Stack · SaaS · Deployment · End-to-End Projects",
+          category: "tech",
         },
       ],
     },
@@ -603,9 +683,9 @@ export const translations = {
       title: "Certificações Executivas & Aprendizado Especializado",
       description:
         "Um currículo rigoroso técnico e estratégico abrangendo princípios de arquitetura, design voltado a conversão e engenharia de software avançada.",
-      status: "21 Credenciais Verificadas",
+      status: "29 Credenciais Verificadas",
       filters: {
-        all: "Todas (21)",
+        all: "Todas (29)",
         tech: "Engenharia & Código",
         design: "Design & UI",
         marketing: "Growth & LP",
@@ -821,6 +901,86 @@ export const translations = {
             "Proficiência na língua inglesa (B2 First) conquistada através de 5 anos de aprendizado contínuo e imersão.",
           skills: "Nota B2 · 5 Anos Contínuos · Proficiência Global",
           category: "language",
+        },
+        {
+          id: "rs-html-css-2019",
+          title: "HTML & CSS Intensivo — Fundamentos Web",
+          issuer: "Rocketseat",
+          date: "2019",
+          details:
+            "Estudo intensivo diário de HTML5 semântico e CSS3 avançado: Flexbox, Grid, animações e design responsivo do zero.",
+          skills: "HTML5 · CSS3 · Flexbox · Grid · Design Responsivo",
+          category: "tech",
+        },
+        {
+          id: "rs-js-2019",
+          title: "JavaScript Fundamentals — Trilha Intensiva",
+          issuer: "Rocketseat",
+          date: "2019",
+          details:
+            "Mergulho profundo em JavaScript ES6+: closures, protótipos, async/await, Fetch API e manipulação de DOM com projetos práticos diários.",
+          skills: "JavaScript ES6+ · DOM · Async/Await · Fetch API",
+          category: "tech",
+        },
+        {
+          id: "rs-node-2020",
+          title: "Node.js — Intensivo de Backend",
+          issuer: "Rocketseat",
+          date: "2020",
+          details:
+            "Construção de APIs REST completas com Node.js, Express, autenticação JWT e bancos de dados PostgreSQL/MongoDB em sessões diárias de estudo.",
+          skills: "Node.js · Express · REST APIs · JWT · PostgreSQL",
+          category: "tech",
+        },
+        {
+          id: "rs-react-2020",
+          title: "React.js — Intensivo de Frontend",
+          issuer: "Rocketseat",
+          date: "2020",
+          details:
+            "Domínio de hooks React, arquitetura de componentes, Context API e consumo de APIs REST. Desafios diários de código e projetos reais.",
+          skills: "React · Hooks · Context API · Arquitetura de Componentes",
+          category: "tech",
+        },
+        {
+          id: "rs-react-native-2021",
+          title: "React Native — Intensivo de Mobile",
+          issuer: "Rocketseat",
+          date: "2021",
+          details:
+            "Desenvolvimento mobile multiplataforma para iOS e Android com React Native e Expo, com prática diária em navegação, APIs de dispositivo e animações.",
+          skills: "React Native · Expo · Mobile UI · Navegação",
+          category: "tech",
+        },
+        {
+          id: "rs-typescript-2021",
+          title: "TypeScript — Intensivo de Tipagem Forte",
+          issuer: "Rocketseat",
+          date: "2021",
+          details:
+            "Aplicação de TypeScript em projetos full-stack: interfaces, genéricos, tipos estritos e padrões avançados aplicados a codebases Node.js e React.",
+          skills: "TypeScript · Genéricos · Interfaces · Segurança de Tipos",
+          category: "tech",
+        },
+        {
+          id: "rs-api-rest-2021",
+          title: "Design de APIs & Arquitetura REST Intensiva",
+          issuer: "Rocketseat",
+          date: "2021",
+          details:
+            "Mergulho nas melhores práticas REST, versionamento de APIs, padrões de tratamento de erros, documentação com Swagger e testes de integração.",
+          skills: "REST Design · Versionamento · Swagger · Testes",
+          category: "tech",
+        },
+        {
+          id: "rs-fullstack-2022",
+          title: "Full Stack — Intensivo de Projeto Completo",
+          issuer: "Rocketseat",
+          date: "2022",
+          details:
+            "Ano final intensivo unindo front-end, back-end, bancos de dados e deploy em aplicações web completas e prontas para produção.",
+          skills: "Full Stack · SaaS · Deploy · Projetos Completos",
+          category: "tech",
         },
       ],
     },

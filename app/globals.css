@@ -211,7 +211,7 @@ main {
   will-change: transform;
 }
 
-@media (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .cursor-glow {
     display: none;
   }
@@ -1661,14 +1661,14 @@ main {
   transform: scale(1.045);
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 768px) {
   .project-visual-wrap.is-cursor-active,
   .project-visual-wrap.is-cursor-active * {
     cursor: none !important;
   }
 }
 
-@media (hover: none) or (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .custom-cursor-btn {
     display: none !important;
   }
@@ -3591,10 +3591,14 @@ main {
 
 /* ---------- Custom cursor ---------- */
 html.has-custom-cursor,
+html.has-custom-cursor *,
 html.has-custom-cursor a,
 html.has-custom-cursor button,
-html.has-custom-cursor [role="button"] {
-  cursor: none;
+html.has-custom-cursor [role="button"],
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select {
+  cursor: none !important;
 }
 
 .cursor-dot,
@@ -3619,16 +3623,14 @@ html.has-custom-cursor [role="button"] {
 .cursor-ring {
   width: 34px;
   height: 34px;
-  border: 1.5px solid color-mix(in srgb, var(--foreground) 45%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--foreground) 65%, transparent);
   background: transparent;
-  mix-blend-mode: difference;
   transition: opacity 0.25s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .cursor-ring.is-active {
-  border-color: color-mix(in srgb, var(--accent) 80%, transparent);
-  background: color-mix(in srgb, var(--accent) 9%, transparent);
-  mix-blend-mode: normal;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
 .cursor-ripple-layer {
@@ -3660,7 +3662,7 @@ html.has-custom-cursor [role="button"] {
   }
 }
 
-@media (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
 
   .cursor-dot,
   .cursor-ring,
@@ -4305,39 +4307,4 @@ button:focus-visible {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  main,
-  .hero-orb,
-  .hero-aurora,
-  .ambient-blob,
-  .map-center.is-floating,
-  .scroll-mouse-wheel,
-  .scroll-cue-line,
-  .btn-shine::before,
-  .philosophy-strip::after {
-    animation: none !important;
-  }
-
-  .cursor-dot,
-  .cursor-ring,
-  .cursor-ripple-layer,
-  .hero-particles {
-    display: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* Reduced motion rules removed to preserve dynamic animations and custom cursor on desktop */

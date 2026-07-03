@@ -19,9 +19,7 @@ export function HeroParticles() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const finePointer = window.matchMedia("(pointer: fine)");
-    if (reducedMotion.matches) return;
+    const isCoarse = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -31,7 +29,7 @@ export function HeroParticles() {
     let width = 0;
     let height = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const count = finePointer.matches ? 26 : 14;
+    const count = isCoarse ? 14 : 26;
     let particles: Particle[] = [];
 
     const resize = () => {

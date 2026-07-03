@@ -10,8 +10,9 @@ export function CursorGlow() {
   const smoothY = useSpring(y, { stiffness: 60, damping: 22 });
 
   useEffect(() => {
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
     const move = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
       x.set(event.clientX - 220);
       y.set(event.clientY - 220);
     };

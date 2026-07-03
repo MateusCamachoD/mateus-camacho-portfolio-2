@@ -12,16 +12,13 @@ export function CustomCursor() {
   const rippleLayerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const finePointer = window.matchMedia("(pointer: fine)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!finePointer.matches || reducedMotion.matches) return;
+    // Do not run on pure touch devices without hover capability (smartphones/tablets)
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
 
     const dot = dotRef.current;
     const ring = ringRef.current;
     const rippleLayer = rippleLayerRef.current;
     if (!dot || !ring || !rippleLayer) return;
-
-    document.documentElement.classList.add("has-custom-cursor");
 
     let targetX = -100;
     let targetY = -100;
@@ -42,6 +39,11 @@ export function CustomCursor() {
       visible = value;
       dot.style.opacity = value ? "1" : "0";
       ring.style.opacity = value ? "1" : "0";
+      if (value) {
+        document.documentElement.classList.add("has-custom-cursor");
+      } else {
+        document.documentElement.classList.remove("has-custom-cursor");
+      }
     };
 
     const onMove = (event: PointerEvent) => {

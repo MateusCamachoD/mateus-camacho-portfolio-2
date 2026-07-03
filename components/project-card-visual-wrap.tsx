@@ -54,8 +54,38 @@ export function ProjectCardVisualWrap({
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Determine direction of mouse entry
+    const distTop = y;
+    const distBottom = rect.height - y;
+    const distLeft = x;
+    const distRight = rect.width - x;
+    const minDist = Math.min(distTop, distBottom, distLeft, distRight);
+
+    let startX = x;
+    let startY = y;
+    const offset = 35; // start offset distance in pixels
+
+    if (minDist === distLeft) {
+      startX = x - offset;
+    } else if (minDist === distRight) {
+      startX = x + offset;
+    } else if (minDist === distTop) {
+      startY = y - offset;
+    } else {
+      startY = y + offset;
+    }
+
+    // Set underlying motion values to mouse position
+    mouseX.set(x);
+    mouseY.set(y);
+
+    // Force spring initial position to be offset on the side of entry
+    cursorX.set(startX);
+    cursorY.set(startY);
+
     setShowCursorBtn(true);
   };
 
@@ -96,11 +126,10 @@ export function ProjectCardVisualWrap({
               translateX: "-50%",
               translateY: "-50%",
             }}
-            initial={{ scale: 0.5, opacity: 0, y: 12 }}
+            initial={{ scale: 0.5, opacity: 0 }}
             animate={{
               scale: 1,
               opacity: 1,
-              y: 0,
               transition: {
                 type: "spring",
                 stiffness: 420,

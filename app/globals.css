@@ -560,55 +560,59 @@ main {
 
 .status-dot {
   position: relative;
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #22c55e;
-  box-shadow: 0 0 8px #22c55e;
-  animation: dot-heartbeat 2s ease-in-out infinite;
+  box-shadow: 0 0 10px #22c55e, 0 0 4px #4ade80;
+  animation: dot-heartbeat 1.2s ease-in-out infinite;
 }
 
 .status-dot::before,
 .status-dot::after {
   position: absolute;
-  inset: -1px;
-  background: rgba(34, 197, 94, 0.35);
-  border: 1px solid #22c55e;
+  inset: -2px;
+  background: rgba(34, 197, 94, 0.45);
+  border: 1px solid #4ade80;
   border-radius: 50%;
   content: "";
 }
 
 .status-dot::before {
-  animation: status-radar-wave 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation: status-radar-wave 1.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
 .status-dot::after {
-  animation: status-radar-wave 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.75s;
+  animation: status-radar-wave 1.4s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.7s;
 }
 
 @keyframes dot-heartbeat {
   0%,
   100% {
-    transform: scale(1);
-    box-shadow: 0 0 4px rgba(34, 197, 94, 0.6);
+    opacity: 1;
+    transform: scale(1.15);
+    background: #4ade80;
+    box-shadow: 0 0 14px #22c55e, 0 0 6px #86efac;
   }
 
   50% {
-    transform: scale(1.15);
-    box-shadow: 0 0 12px rgba(34, 197, 94, 1);
+    opacity: 0.25;
+    transform: scale(0.85);
+    background: #15803d;
+    box-shadow: 0 0 2px rgba(34, 197, 94, 0.2);
   }
 }
 
 @keyframes status-radar-wave {
   0% {
-    opacity: 0.85;
+    opacity: 0.95;
     transform: scale(1);
   }
 
   75%,
   100% {
     opacity: 0;
-    transform: scale(3.5);
+    transform: scale(4);
   }
 }
 
@@ -748,10 +752,12 @@ main {
 }
 
 .window-live span {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #54b46b;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: dot-heartbeat 1.2s ease-in-out infinite;
 }
 
 .product-canvas {

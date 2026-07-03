@@ -22,7 +22,7 @@ export const translations = {
       titleWords: ["Ideas.", "Systems.", "Products."],
       titleSrOnly: "I turn ideas into systems and products.",
       intro:
-        "I'm <strong>Mateus D. Camacho</strong>, a software engineer, product builder, and founder. I combine engineering, AI, design, and business strategy to take digital products from first principles to production.",
+        "I'm <strong>Mateus D. Camacho</strong>, a graduated software engineer, product builder, and founder. I combine engineering, AI, design, and business strategy to take digital products from first principles to production.",
       viewResume: "View resume",
       scrollToExplore: "Scroll to explore",
       basedIn: "Based in São Paulo · Working worldwide",

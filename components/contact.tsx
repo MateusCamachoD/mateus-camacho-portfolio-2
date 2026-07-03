@@ -44,7 +44,7 @@ export function Contact() {
   return (
     <section className="contact-section" id="contact">
       <div className="container">
-        <Reveal className="contact-panel">
+        <Reveal className="contact-panel" variant="clip-up">
           <div className="contact-copy">
             <p className="eyebrow">{t.contact.eyebrow}</p>
             <h2>

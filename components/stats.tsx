@@ -3,7 +3,7 @@
 import { useLanguage } from "@/lib/language-context";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import { Reveal } from "@/components/reveal";
+import { Stagger, StaggerItem } from "@/components/reveal";
 
 function Counter({
   target,
@@ -44,31 +44,31 @@ export function Stats() {
   return (
     <section className="stats-section" aria-label="Career overview">
       <div className="container">
-        <Reveal className="stats-panel">
-          <div className="stat">
+        <Stagger className="stats-panel" stagger={0.1}>
+          <StaggerItem className="stat" variant="zoom-soft">
             <strong>
               <Counter target={7} />
             </strong>
             <span>{t.stats.careerChapters}</span>
-          </div>
-          <div className="stat">
+          </StaggerItem>
+          <StaggerItem className="stat" variant="zoom-soft">
             <strong>
               <Counter target={4} />
             </strong>
             <span>{t.stats.connectedDisciplines}</span>
-          </div>
-          <div className="stat">
+          </StaggerItem>
+          <StaggerItem className="stat" variant="zoom-soft">
             <strong>
               <Counter target={100} suffix="%" />
             </strong>
             <span>{t.stats.endToEndOwnership}</span>
-          </div>
-          <div className="stat stat-statement">
+          </StaggerItem>
+          <StaggerItem className="stat stat-statement" variant="zoom-soft">
             <span>{t.stats.fromWhatIf}</span>
             <strong>{t.stats.whatIf}</strong>
             <span>{t.stats.toShipped}</span>
-          </div>
-        </Reveal>
+          </StaggerItem>
+        </Stagger>
       </div>
     </section>
   );

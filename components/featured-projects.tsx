@@ -34,19 +34,25 @@ export function FeaturedProjects() {
                 initial={{
                   opacity: 0,
                   y: 60,
+                  x: index % 2 === 0 ? -34 : 34,
                   scale: 0.92,
                   filter: "blur(14px)",
-                  rotateX: 8,
+                  rotate: index % 2 === 0 ? -0.8 : 0.8,
                 }}
                 whileInView={{
                   opacity: 1,
                   y: 0,
+                  x: 0,
                   scale: 1,
                   filter: "blur(0px)",
-                  rotateX: 0,
+                  rotate: 0,
                 }}
                 viewport={{ once: true, margin: "-90px" }}
-                transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 0.95,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: (index % 2) * 0.12,
+                }}
                 style={{ perspective: 1200 }}
               >
                 <ProjectCardVisualWrap
@@ -84,7 +90,7 @@ export function FeaturedProjects() {
                       href={project.liveUrl || `/projects/${project.slug}`}
                       target={project.liveUrl ? "_blank" : undefined}
                       rel={project.liveUrl ? "noreferrer" : undefined}
-                      className={buttonVariants({ variant: "primary" })}
+                      className={cn(buttonVariants({ variant: "primary" }), "btn-shine")}
                     >
                       {t.work.viewCaseStudy}
                       <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

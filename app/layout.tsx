@@ -5,6 +5,8 @@ import { Providers } from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { CursorGlow } from "@/components/cursor-glow";
+import { CustomCursor } from "@/components/custom-cursor";
+import { AmbientBackground } from "@/components/ambient-background";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -74,8 +76,10 @@ export default function RootLayout({
     >
       <body>
         <Providers>
+          <AmbientBackground />
           <ScrollProgress />
           <CursorGlow />
+          <CustomCursor />
           <SiteHeader />
           {children}
         </Providers>

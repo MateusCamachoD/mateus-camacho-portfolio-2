@@ -77,7 +77,7 @@ export function Certifications() {
     <section className="section certifications-section py-20">
       <div className="container">
         {/* Header */}
-        <Reveal>
+        <Reveal variant="mask-left">
           <div className="mb-12 flex flex-col items-start justify-between gap-6 border-b border-border/60 pb-8 md:flex-row md:items-end">
             <div className="max-w-2xl">
               <div className="mb-3 flex items-center gap-2">

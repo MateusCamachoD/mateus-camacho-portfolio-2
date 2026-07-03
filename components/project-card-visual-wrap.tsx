@@ -2,7 +2,14 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { m, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import {
+  m,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectVisual } from "@/components/project-visual";
 import type { Project } from "@/data/portfolio";
@@ -29,6 +36,13 @@ export function ProjectCardVisualWrap({
   const springConfig = { damping: 28, stiffness: 480, mass: 0.12 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
+
+  // Subtle scroll parallax on the visual.
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [-26, 26]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -64,7 +78,10 @@ export function ProjectCardVisualWrap({
         rel={project.liveUrl ? "noreferrer" : undefined}
         className="block"
       >
-        <ProjectVisual project={project} />
+        <m.div className="project-parallax" style={{ y: parallaxY }}>
+          <ProjectVisual project={project} />
+        </m.div>
+        <span className="project-visual-overlay" aria-hidden />
       </Link>
 
       <AnimatePresence>

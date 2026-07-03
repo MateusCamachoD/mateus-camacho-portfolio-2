@@ -3,34 +3,88 @@
 import Link from "next/link";
 import { AnimatePresence, m } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/magnetic";
 import { useLanguage } from "@/lib/language-context";
+
+const SECTION_IDS = ["about", "experience", "work", "skills"];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const lastY = useRef(0);
+  const activeSectionRef = useRef<string | null>(null);
   const { t } = useLanguage();
 
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
+
   const links = [
-    { label: t.nav.about, href: "/#about" },
-    { label: t.nav.experience, href: "/#experience" },
-    { label: t.nav.work, href: "/#work" },
-    { label: t.nav.skills, href: "/#skills" },
+    { label: t.nav.about, href: "/#about", id: "about" },
+    { label: t.nav.experience, href: "/#experience", id: "experience" },
+    { label: t.nav.work, href: "/#work", id: "work" },
+    { label: t.nav.skills, href: "/#skills", id: "skills" },
   ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+
+      // Smart hide/show: hide when scrolling down deep, reveal on scroll up.
+      const delta = y - lastY.current;
+      if (y < 140) {
+        setHidden(false);
+      } else if (delta > 6) {
+        setHidden(true);
+      } else if (delta < -6) {
+        setHidden(false);
+      }
+      lastY.current = y;
+    };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null,
+    );
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          } else if (
+            entry.target.id === activeSectionRef.current &&
+            entry.boundingClientRect.top > 0
+          ) {
+            setActiveSection(null);
+          }
+        }
+      },
+      { rootMargin: "-35% 0px -55% 0px" },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <header
+        className={`site-header ${scrolled ? "is-scrolled" : ""} ${
+          hidden && !open ? "is-hidden" : ""
+        }`}
+      >
         <div className="header-inner">
           <Link
             href="/"
@@ -49,8 +103,13 @@ export function SiteHeader() {
 
           <nav className="desktop-nav" aria-label="Primary navigation">
             {links.map((link) => (
-              <Link key={link.href} href={link.href}>
-                {link.label}
+              <Link
+                key={link.href}
+                href={link.href}
+                className={activeSection === link.id ? "is-active" : ""}
+                aria-current={activeSection === link.id ? "true" : undefined}
+              >
+                <span className="nav-link-label">{link.label}</span>
               </Link>
             ))}
           </nav>
@@ -58,9 +117,11 @@ export function SiteHeader() {
           <div className="header-actions">
             <LanguageToggle />
             <ThemeToggle />
-            <Link href="/#contact" className="nav-cta">
-              {t.nav.letsTalk}
-            </Link>
+            <Magnetic strength={0.22}>
+              <Link href="/#contact" className="nav-cta btn-shine">
+                {t.nav.letsTalk}
+              </Link>
+            </Magnetic>
             <Button
               variant="ghost"
               size="icon"

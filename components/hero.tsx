@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { m } from "framer-motion";
 import {
-  ArrowDown,
   ArrowUpRight,
   BriefcaseBusiness,
   CodeXml,
@@ -15,6 +14,8 @@ import { profile } from "@/data/portfolio";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
+import { Magnetic } from "@/components/magnetic";
+import { HeroParticles } from "@/components/hero-particles";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -24,6 +25,8 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="hero-orb hero-orb-one" aria-hidden />
       <div className="hero-orb hero-orb-two" aria-hidden />
+      <div className="hero-aurora" aria-hidden />
+      <HeroParticles />
 
       <div className="container hero-grid">
         <div className="hero-copy">
@@ -76,15 +79,17 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.58 }}
           >
-            <a
-              href={profile.resume}
-              target="_blank"
-              rel="noreferrer"
-              className={buttonVariants({ variant: "primary" })}
-            >
-              {t.hero.viewResume}
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            <Magnetic>
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(buttonVariants({ variant: "primary" }), "btn-shine")}
+              >
+                {t.hero.viewResume}
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Magnetic>
             <a
               href={profile.github}
               target="_blank"
@@ -132,7 +137,7 @@ export function Hero() {
               </div>
               <span className="window-label">Product system / 01</span>
               <span className="window-live">
-                <span />
+                <span className="status-dot" style={{ width: 7, height: 7 }} />
                 {t.hero.live}
               </span>
             </div>
@@ -140,7 +145,7 @@ export function Hero() {
             <div className="product-canvas">
               <m.div
                 className="map-node node-strategy"
-                animate={{ y: [0, -5, 0] }}
+                animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
                 <span>01</span>
@@ -149,7 +154,7 @@ export function Hero() {
               </m.div>
               <m.div
                 className="map-node node-design"
-                animate={{ y: [0, 5, 0] }}
+                animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
                 <span>02</span>
@@ -158,7 +163,7 @@ export function Hero() {
               </m.div>
               <m.div
                 className="map-node node-build"
-                animate={{ y: [0, -4, 0] }}
+                animate={{ y: [0, -9, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               >
                 <span>03</span>
@@ -166,7 +171,7 @@ export function Hero() {
                 <small>{t.hero.buildSmall}</small>
               </m.div>
 
-              <div className="map-center">
+              <div className="map-center is-floating">
                 <span className="center-pulse" />
                 <div className="center-logo">
                   <Image
@@ -182,7 +187,11 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="signal-card">
+              <m.div
+                className="signal-card"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              >
                 <div>
                   <span>{t.hero.systemSignal}</span>
                   <strong>{t.hero.readyToScale}</strong>
@@ -193,7 +202,7 @@ export function Hero() {
                   <span />
                   <span />
                 </div>
-              </div>
+              </m.div>
             </div>
 
             <div className="product-footer">
@@ -211,8 +220,11 @@ export function Hero() {
 
       <div className="container hero-bottom">
         <Link href="/#about" className="scroll-cue">
+          <span className="scroll-mouse" aria-hidden>
+            <span className="scroll-mouse-wheel" />
+          </span>
           <span>{t.hero.scrollToExplore}</span>
-          <ArrowDown className="size-4" />
+          <span className="scroll-cue-line" aria-hidden />
         </Link>
         <p>{t.hero.basedIn}</p>
       </div>

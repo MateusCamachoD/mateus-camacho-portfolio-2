@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatePresence, m } from "framer-motion";
+import { AnimatePresence, m, useScroll, useSpring } from "framer-motion";
 import { Building2, Calendar, Check, ExternalLink, MapPin, Minus, Plus } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SectionHeading } from "@/components/section-heading";
 import { experience } from "@/data/portfolio";
 import { useLanguage } from "@/lib/language-context";
@@ -21,6 +21,17 @@ const experienceKeyMap: Record<string, string> = {
 export function ExperienceTimeline() {
   const [openIndex, setOpenIndex] = useState(0);
   const { t } = useLanguage();
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 0.75", "end 0.45"],
+  });
+  const lineScale = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 26,
+    restDelta: 0.001,
+  });
 
   return (
     <section className="section experience-section" id="experience">
@@ -31,7 +42,13 @@ export function ExperienceTimeline() {
           description={t.experience.description}
         />
 
-        <div className="timeline">
+        <div className="timeline" ref={timelineRef}>
+          <div className="timeline-track" aria-hidden />
+          <m.div
+            className="timeline-progress"
+            style={{ scaleY: lineScale }}
+            aria-hidden
+          />
 
           {experience.map((item, index) => {
             const isOpen = openIndex === index;

@@ -136,10 +136,8 @@ export function Hero() {
                 {t.hero.live}
               </span>
             </div>
+
             <div className="product-canvas">
-              <div className="map-line line-one" />
-              <div className="map-line line-two" />
-              <div className="map-line line-three" />
               <m.div
                 className="map-node node-strategy"
                 animate={{ y: [0, -5, 0] }}
@@ -167,6 +165,7 @@ export function Hero() {
                 <strong>{t.hero.build}</strong>
                 <small>{t.hero.buildSmall}</small>
               </m.div>
+
               <div className="map-center">
                 <span className="center-pulse" />
                 <div className="center-logo">
@@ -182,6 +181,7 @@ export function Hero() {
                   />
                 </div>
               </div>
+
               <div className="signal-card">
                 <div>
                   <span>{t.hero.systemSignal}</span>
@@ -195,6 +195,7 @@ export function Hero() {
                 </div>
               </div>
             </div>
+
             <div className="product-footer">
               <span>{t.hero.think}</span>
               <MoveRight className="size-3.5" />

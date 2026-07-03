@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const alt =
   "Mateus Camacho — Software Engineer, Product Builder, and Founder";
@@ -10,9 +12,9 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const profileBuffer = await fetch(
-    new URL("../public/profile.jpg", import.meta.url)
-  ).then((res) => res.arrayBuffer());
+  const profileBuffer = await readFile(
+    join(process.cwd(), "public", "profile.jpg")
+  );
 
   const base64Profile = `data:image/jpeg;base64,${Buffer.from(profileBuffer).toString("base64")}`;
 

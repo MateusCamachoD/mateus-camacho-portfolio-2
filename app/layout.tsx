@@ -43,6 +43,8 @@ export const metadata: Metadata = {
     title: "Mateus Camacho — Software Engineer, Product Builder & Founder",
     description:
       "Engineering, product thinking, design, AI, and business strategy—connected from idea to production.",
+    url: "https://mateuscamacho.dev",
+    siteName: "Mateus Camacho",
     type: "website",
     locale: "en_US",
   },

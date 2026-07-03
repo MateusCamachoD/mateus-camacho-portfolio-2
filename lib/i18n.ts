@@ -107,7 +107,7 @@ export const translations = {
         {
           id: "utfpr-degree",
           title: "Bachelor of Computer Software Engineering",
-          issuer: "Universidade Tecnológica Federal do Paraná (UTFPR)",
+          issuer: "Federal University of Technology – Paraná (UTFPR)",
           date: "Aug 2020 – Aug 2025",
           details:
             "5-year formal engineering degree covering software architecture, distributed systems, data structures, algorithms, and clean design.",

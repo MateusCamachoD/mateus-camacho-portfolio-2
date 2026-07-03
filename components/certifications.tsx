@@ -40,7 +40,7 @@ export function Certifications() {
       : certificationsList.filter((item) => item.category === activeFilter);
 
   const getIssuerStyle = (issuer: string) => {
-    if (issuer.includes("Universidade") || issuer.includes("UTFPR")) {
+    if (issuer.includes("Universidade") || issuer.includes("UTFPR") || issuer.includes("Federal")) {
       return "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30";
     }
     if (issuer.includes("Rocketseat")) {
@@ -147,18 +147,20 @@ export function Certifications() {
               >
                 <div>
                   {/* Top Bar: Issuer Badge & Date */}
-                  <div className="mb-3 flex items-center justify-between gap-1.5">
+                  <div className="mb-3.5 flex flex-col items-start gap-2 w-full">
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold tracking-wide ${getIssuerStyle(
+                      className={`inline-flex w-full items-center gap-2 rounded-xl border px-3 py-1.5 text-xs font-bold tracking-wide leading-snug ${getIssuerStyle(
                         item.issuer
                       )}`}
                     >
-                      <Award className="size-3 shrink-0" />
-                      {item.issuer}
+                      <Award className="size-3.5 shrink-0" />
+                      <span>{item.issuer}</span>
                     </span>
-                    <span className="font-mono text-[11px] font-medium text-muted-foreground/80 shrink-0">
-                      {item.date}
-                    </span>
+                    <div className="flex w-full items-center justify-between px-0.5">
+                      <span className="font-mono text-[11px] font-medium text-muted-foreground/80">
+                        {item.date}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Title */}
